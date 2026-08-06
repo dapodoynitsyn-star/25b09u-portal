@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-parchment text-ink font-body antialiased;
+    background-image:
+      linear-gradient(rgba(122,31,43,0.02) 1px, transparent 1px);
+    background-size: 100% 2.5rem;
+  }
+  html.dark body {
+    @apply bg-navy text-navy-soft;
+    background-image: linear-gradient(rgba(154,170,196,0.03) 1px, transparent 1px);
+    background-size: 100% 2.5rem;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display text-ink;
+  }
+  html.dark h1, html.dark h2, html.dark h3, html.dark h4 {
+    @apply text-parchment-soft;
+  }
+  ::selection {
+    background: #7A1F2B;
+    color: #F6F1E7;
+  }
+  *:focus-visible {
+    outline: 2px solid #B08D57;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .rule-line {
+    @apply border-t border-b border-parchment-line;
+    border-top-width: 3px;
+    border-bottom-width: 1px;
+  }
+  html.dark .rule-line {
+    @apply border-navy-line;
+  }
+  .card {
+    @apply bg-white/70 dark:bg-navy-surface/70 border border-parchment-line dark:border-navy-line rounded-lg shadow-card backdrop-blur-sm;
+  }
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-md bg-seal text-parchment-soft px-4 py-2 text-sm font-medium hover:bg-seal-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-md border border-parchment-line dark:border-navy-line px-4 py-2 text-sm font-medium hover:bg-parchment-soft dark:hover:bg-navy-line/40 transition-colors;
+  }
+  .input {
+    @apply w-full rounded-md border border-parchment-line dark:border-navy-line bg-white dark:bg-navy-surface px-3 py-2 text-sm placeholder:text-ink-soft/50 dark:placeholder:text-navy-soft/50 focus:outline-none focus:ring-2 focus:ring-brass/60;
+  }
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.18em] text-seal dark:text-brass-light font-semibold;
+  }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
